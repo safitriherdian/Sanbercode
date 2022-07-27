@@ -41,7 +41,7 @@ class TestLogin(unittest.TestCase):
         response_data = driver.find_element(By.ID, "swal2-title").text
         response_message = driver.find_element(By.ID, "swal2-content").text
 
-        self.assertIn(response_data, "Welcome")
+        self.assertEqual(response_data, "Welcome")
         self.assertEqual(response_message, "Anda Berhasil Login")
 
     # Test Case Login Negative
