@@ -13,7 +13,7 @@ class TestLogin(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
-    # Test Case Open Page Register
+     # Test Case Open Page Register
     def test_a_open_page_register(self):
 
         driver = self.driver
@@ -22,8 +22,8 @@ class TestLogin(unittest.TestCase):
         driver.find_element(By.ID, "signUp").click()
         time.sleep(1)
 
-        response_data = driver.find_element(By.ID, "registerForm").text
-        self.assertIn(response_data, "Create Account")
+        response_data = driver.find_element(By.CSS_SELECTOR, "#container > div.overlay-container > div > div.overlay-panel.overlay-left > h1").text
+        self.assertIn(response_data, "Welcome Back!")
 
     # Test Case Login Positive
     def test_b_success_login(self):
@@ -103,25 +103,25 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(response_data, "Email tidak valid")
         self.assertEqual(response_message, "Cek kembali email anda")
 
-    # Test Case Login Negative
-    def test_f_failed_login_with_wrong_email_format(self):
+#     # Test Case Login Negative
+#     def test_f_failed_login_with_wrong_email_format(self):
 
-        driver = self.driver
-        driver.get(url)
-        time.sleep(3)
-        driver.find_element(By.ID, "email").send_keys("saf")
-        time.sleep(1)
+#         driver = self.driver
+#         driver.get(url)
+#         time.sleep(3)
+#         driver.find_element(By.ID, "email").send_keys("saf")
+#         time.sleep(1)
 
-        email_error = driver.find_element(By.ID,"email").get_attribute("validationMessage")
-        print("PRINT ERROR")
-        print(email_error)
+#         email_error = driver.find_element(By.ID,"email").get_attribute("validationMessage")
+#         print("PRINT ERROR")
+#         print(email_error)
 
-        driver.find_element(By.ID, "password").send_keys("saf123")
-        time.sleep(1)
-        driver.find_element(By.ID, "signin_login").click()
-        time.sleep(1)
+#         driver.find_element(By.ID, "password").send_keys("saf123")
+#         time.sleep(1)
+#         driver.find_element(By.ID, "signin_login").click()
+#         time.sleep(1)
 
-        self.assertIn(email_error, "Please Include")
+#         self.assertIn(email_error, "Please Include")
 
     def tearDown(self):
         self.driver.close()
